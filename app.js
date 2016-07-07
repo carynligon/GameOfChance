@@ -1,7 +1,29 @@
-function PlayingCardConstructor (suit, value) {
+function PlayingCardConstructor (suit, rank) {
   this.suit = suit;
-  this.value = value;
+  this.rank = rank;
 }
+
+var newCard = new PlayingCardConstructor ('hearts', 6);
+
+function MakeDeck() {
+  this.cards = [];
+  this.shuffle = function () {
+    
+  };
+  var suits = ['clubs', 'hearts', 'spades', 'diamonds'];
+  var ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
+  var self = this;
+  var index = 0;
+  suits.forEach(function(suit, i) {
+    ranks.forEach(function(rank, i) {
+      self.cards[index] = rank + ' of ' + suit;
+      index++;
+    });
+  });
+  }
+
+var newDeck = new MakeDeck();
+
 
 function BuildDice (currValue) {
   this.currValue = currValue;
