@@ -7,12 +7,22 @@ var newCard = new PlayingCardConstructor ('hearts', 6);
 
 function MakeDeck() {
   this.cards = [];
+  var self = this;
   this.shuffle = function () {
-    
+    self.cards.forEach(function(card, i) {
+      var newIndex = Math.floor(Math.random() * self.cards.length);
+      var number = self.cards[i];
+      self.cards[i] = self.cards[newIndex];
+      self.cards[newIndex] = number;
+    });
+  };
+  this.draw = function () {
+    var topCard = self.cards[0];
+    console.log(topCard);
+    return topCard;
   };
   var suits = ['clubs', 'hearts', 'spades', 'diamonds'];
   var ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King', 'Ace'];
-  var self = this;
   var index = 0;
   suits.forEach(function(suit, i) {
     ranks.forEach(function(rank, i) {
@@ -23,6 +33,19 @@ function MakeDeck() {
   }
 
 var newDeck = new MakeDeck();
+
+$('#top-card').on('click', loadCardImg);
+
+function loadCardImg () {
+  var shuffleDeck = newDeck.shuffle();
+  var selectedCard = newDeck.draw();
+  var fileName = selectedCard.split(' ').join('_') + '.png';
+  console.log(fileName);
+  $('#top-card').text('');
+  $('#top-card').append('<img src="#" />');
+  $('img').attr('src', 'assets/images/' + fileName);
+}
+
 
 
 function BuildDice (currValue) {
