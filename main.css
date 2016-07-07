@@ -1,3 +1,9 @@
-
+#top-card {
+  height: 325px;
+  width: 225px;
+  margin: 100px auto;
+  border: 1px solid #000;
+  font-size: 4rem;
+  text-align: center; }
 
 /*# sourceMappingURL=main.css.map */
